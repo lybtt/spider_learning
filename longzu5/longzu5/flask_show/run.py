@@ -20,18 +20,15 @@ def hello_world():
 
 @app.route('/article/<int:number>', methods=('GET', 'POST'))
 def show_article(number):
-    neir = find_in_mongo(number)[0]
+    neir, article = find_in_mongo(number)
+    if neir is None:
+        return render_template('article.html', neir=neir, number=number, error="错误， 超出章节范围")
     return render_template('article.html', neir=neir, number=number)
 
 @app.route('/jump', methods=("POST",))
 def jump_to_page():
     number = int(request.form['page'])
-    neir, article = find_in_mongo(number)
-    if number > article.count():
-        return render_template('article.html', error='错误，超出章节数')
-    else:
-        neir = article.find_one({"number": number})
-        return render_template('article.html', neir=neir, number=number)
+    return redirect(url_for('show_article', number=number))
 
 def find_in_mongo(number):
     client = pymongo.MongoClient(MONGO_URI)
