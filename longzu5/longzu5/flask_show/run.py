@@ -8,7 +8,7 @@ from flask import Flask, render_template, g, request, redirect, url_for
 import sys
 from config import FLASK_BASE_DIR
 sys.path.append(FLASK_BASE_DIR)
-from settings import MONGO_TABLE, MONGO_URI, MONGO_DB
+from longzu5.settings import MONGO_TABLE, MONGO_URI, MONGO_DB
 
 
 app = Flask(__name__)
