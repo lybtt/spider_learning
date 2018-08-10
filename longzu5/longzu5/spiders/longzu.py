@@ -17,6 +17,7 @@ class LongzuSpider(scrapy.Spider):
         article_urls = response.xpath('//div[@class="list_box"]').css('a::attr(href)').extract()
         article_titles = response.xpath('//div[@class="list_box"]').css('li').css('a::text').extract()
         self.articles = dict(zip(article_urls, article_titles))
+        self.paixu = dict(zip(range(10000), self.articles))
         self.exited_url_list = self.get_exited_url()
         for article_url, article_title in self.articles.items():
             article_url_com = response.urljoin(article_url)
@@ -36,6 +37,9 @@ class LongzuSpider(scrapy.Spider):
         item['title'] = title
         item['content'] = content
         item['url'] = response.url
+        for number, url in self.paixu.items():
+            if url == old_url:
+                item['number'] = number
         yield item
 
     def get_exited_url(self, ):

@@ -14,3 +14,4 @@ class Longzu5Item(scrapy.Item):
     title = scrapy.Field()
     content = scrapy.Field()
     url = scrapy.Field()
+    number = scrapy.Field()

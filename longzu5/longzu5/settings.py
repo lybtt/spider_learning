@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'longzu5.spiders'
 #USER_AGENT = 'longzu5 (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -91,7 +91,8 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+# uri = 'mongodb://' + user + ':' + pwd + '@' + server + ':' + port +'/'+ db_name
 
-MONGO_URI = 'ip'
-MONGO_DB = 'longzu'
-MONGO_TABLE = 'longzu5'
+MONGO_URI = 'YOUR_IP'
+MONGO_DB = 'YOUR_DB'
+MONGO_TABLE = 'YOUR_TABLE'

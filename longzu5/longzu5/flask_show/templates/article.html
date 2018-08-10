@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{% if error %}{{ error }}
+  {% else %}      {{ neir['number'] }}{% endif %}</title>
+</head>
+<body>
+{% if error %}
+    <p>{{ error }}</p>
+{% else %}
+
+    <p>{{ neir['title'] }}</p>
+    {% for i in neir['content'] %}
+        <p>{{ i }}</p>
+    {% endfor %}
+
+{% endif %}
+{% if error %}
+    <input type="button" name="Submit" onclick="javascript:history.back(-1);" value="返回">
+{% else %}
+    <form action="{{ url_for('show_article', number=number-1) }}" method="post">
+    <input type="submit" value="上一页">
+        </form>
+    <form action="{{ url_for('show_article', number=number+1 ) }}" method="post">
+    <input type="submit" value="下一页">
+        </form>
+
+    <form action="{{ url_for('jump_to_page') }}" method="post">
+        <input id="page" type="text" name="page" placeholder="输入数字跳转"
+               onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+               onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" required>
+    <input type="submit" value="跳转">
+        </form>
+{% endif %}
+</body>
+</html>
