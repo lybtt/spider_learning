@@ -32,6 +32,7 @@ class LongzuSpider(scrapy.Spider):
                 print('文章 {} 已存在'.format(self.articles[article_url]))
             else:
                 yield scrapy.Request(url=article_url_com, callback=self.parse_content, meta={"number": number})
+                # 传递参数， item['number'] = response.meta['number']
 
     def parse_content(self, response):
         content = []
